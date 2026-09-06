@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Land Cover Classification</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Header -->
+        <header class="header">
+
+            <div>
+                <h1>AI Land Cover Classification</h1>
+
+                <p>
+                    ResNet50-powered satellite image analysis
+                    with feature-space OOD detection
+                </p>
+            </div>
+
+            <div class="model-badge">
+                ResNet50 · V3
+            </div>
+
+        </header>
+
+
+        <main>
+
+            <!-- Upload Section -->
+            <section class="upload-section">
+
+                <div id="dropZone" class="drop-zone">
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+                    <h2>
+                        Upload an image
+                    </h2>
+
+                    <p>
+                        Drag & drop an image here
+                        or choose a file
+                    </p>
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept="image/png,image/jpeg,image/jpg"
+                        hidden
+                    >
+
+                    <button
+                        id="chooseButton"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        Choose Image
+                    </button>
+
+                </div>
+
+
+                <!-- Preview -->
+                <div
+                    id="previewContainer"
+                    class="preview-container hidden"
+                >
+
+                    <img
+                        id="previewImage"
+                        alt="Selected image"
+                    >
+
+                    <div class="file-info">
+
+                        <span id="fileName"></span>
+
+                        <button
+                            id="removeButton"
+                            class="remove-button"
+                            type="button"
+                        >
+                            Remove
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Analyze -->
+                <button
+                    id="analyzeButton"
+                    class="analyze-button"
+                    disabled
+                    type="button"
+                >
+                    Analyze Image
+                </button>
+
+            </section>
+
+
+            <!-- Loading -->
+            <div
+                id="loading"
+                class="loading hidden"
+            >
+                <div class="spinner"></div>
+
+                <p>
+                    Analyzing image...
+                </p>
+            </div>
+
+
+            <!-- Error -->
+            <div
+                id="error"
+                class="error hidden"
+            ></div>
+
+
+            <!-- Results -->
+            <section
+                id="results"
+                class="results hidden"
+            >
+
+                <!-- Main Prediction -->
+                <div class="prediction-card">
+
+                    <div class="result-label">
+                        PREDICTION
+                    </div>
+
+                    <h2 id="prediction">
+                        -
+                    </h2>
+
+                    <div class="confidence-wrapper">
+
+                        <div class="confidence-value">
+                            <span id="confidence">-</span>%
+                        </div>
+
+                        <div class="confidence-label">
+                            Model Confidence
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Domain Check -->
+                <div
+                    id="oodCard"
+                    class="ood-card"
+                >
+
+                    <div class="ood-title">
+                        DOMAIN CHECK
+                    </div>
+
+                    <div id="oodStatus">
+                        -
+                    </div>
+
+                    <div class="ood-detail">
+                        Feature similarity:
+                        <strong id="featureSimilarity">-</strong>
+                    </div>
+
+                    <div class="ood-detail">
+                        Domain fit:
+                        <strong id="reliabilityScore">-</strong>
+                    </div>
+
+                    <div class="ood-detail">
+                        Status:
+                        <strong id="reliabilityStatus">-</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- Top 3 -->
+                <div class="card">
+
+                    <h3>
+                        Top Predictions
+                    </h3>
+
+                    <div id="top3"></div>
+
+                </div>
+
+
+                <!-- Model Metrics -->
+                <div class="metrics-grid">
+
+                    <div class="metric-card">
+
+                        <span>
+                            Entropy
+                        </span>
+
+                        <strong id="entropy">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="metric-card">
+
+                        <span>
+                            Prediction Margin
+                        </span>
+
+                        <strong id="margin">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="metric-card">
+
+                        <span>
+                            OOD Threshold
+                        </span>
+
+                        <strong id="oodThreshold">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Technical Information -->
+                <div class="card">
+
+                    <h3>
+                        Domain Analysis
+                    </h3>
+
+                    <div class="ood-detail">
+                        Nearest EuroSAT class:
+                        <strong id="nearestClass">-</strong>
+                    </div>
+
+                    <div class="ood-detail">
+                        Domain fit score:
+                        <strong id="domainFit">-</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer>
+
+            <span>
+                PyTorch · ResNet50 · EuroSAT
+            </span>
+
+            <span>
+                V3
+            </span>
+
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
