@@ -99,7 +99,8 @@ model.fc = nn.Linear(
 model.load_state_dict(
     torch.load(
         MODEL_PATH,
-        map_location=device
+        map_location=device,
+        weights_only=False
     )
 )
 
@@ -156,7 +157,8 @@ feature_model.eval()
 
 centroid_matrix = torch.load(
     CENTROID_PATH,
-    map_location=device
+    map_location=device,
+    weights_only=False
 )
 
 centroid_matrix = centroid_matrix.to(device)
@@ -173,7 +175,8 @@ centroid_matrix = F.normalize(
 
 validation_similarities = torch.load(
     VALIDATION_REFERENCE_PATH,
-    map_location="cpu"
+    map_location="cpu",
+    weights_only=False
 )
 
 validation_similarities = (
