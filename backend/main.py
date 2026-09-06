@@ -5,7 +5,7 @@ from PIL import Image, UnidentifiedImageError
 from io import BytesIO
 from typing import List
 
-from predict_v3 import predict_image
+from backend.predict_v3 import predict_image
 
 
 # =========================================================
