@@ -83,6 +83,11 @@ The original classification head was replaced with:
 
 ```text
 Linear(2048 → 10)
+
+
+## PROJECT ARCHITECTURE
+
+    
                     ┌─────────────────────┐
                     │      Frontend       │
                     │   HTML / CSS / JS   │
