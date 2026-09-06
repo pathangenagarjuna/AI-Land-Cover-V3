@@ -88,7 +88,7 @@ app.add_middleware(
 # =========================================================
 
 @app.get(
-    "/health",
+    "/api/health",
     response_model=HealthResponse,
     summary="Check API health"
 )
@@ -106,7 +106,7 @@ def health():
 # =========================================================
 
 @app.post(
-    "/predict",
+    "/api/predict",
     response_model=PredictionResponse,
     summary="Classify a land-cover image",
     description="""
