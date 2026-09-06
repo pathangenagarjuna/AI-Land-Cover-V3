@@ -1,8 +1,13 @@
 import sys
 from pathlib import Path
+import traceback
 
-# Add backend directory to Python path
 BACKEND_DIR = Path(__file__).resolve().parent.parent / "backend"
 sys.path.insert(0, str(BACKEND_DIR))
 
-from main import app
+try:
+    from main import app
+except Exception:
+    print("=== VERCEL STARTUP ERROR ===")
+    traceback.print_exc()
+    raise
